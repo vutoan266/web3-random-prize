@@ -20,3 +20,4 @@ Preview the example live on [Heroku](http://random-prize.herokuapp.com/)
 -   Deployed on Heroku
 
 ## Use case flow
+![photo_2021-11-22_21-48-21](https://user-images.githubusercontent.com/18349710/142882271-a7697b43-ca7a-4586-a9a4-e515ff285e78.jpg)
