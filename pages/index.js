@@ -10,13 +10,10 @@ const columns = [
     {
         title: 'Address',
         dataIndex: '_wallet'
-        // key: 'address'
-        // render: (text) => <a>{text}</a>
     },
     {
         title: 'Id',
         dataIndex: '_id'
-        // key: 'id'
     }
 ];
 
