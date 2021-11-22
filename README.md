@@ -2,7 +2,7 @@
 
 For learning purpose, I have created a new simple project that user can registry a new account and then receive prize if 2 conditions are satisfied:
 
--   The number of new users in this turn is enough: 5.
+-   The number of new users in this turn is enough: 3 users per turn.
 -   The Smart contract will execute random function to generate the index of winner.
 
 ## Preview

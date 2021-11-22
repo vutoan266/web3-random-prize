@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
-import { Form, Input, Button, message, Table } from 'antd';
+import { Form, Input, Button, message, Table, notification } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 import fetcher from '../utils/request';
-import { abi, smAddress } from '../contract';
+import { abi, smAddress, ropstenInfuraProvider } from '../contract';
 import Web3 from 'web3';
 
 const columns = [
@@ -33,9 +33,7 @@ export default function Index() {
 
     const contractInfura = React.useMemo(() => {
         if (typeof window !== 'undefined') {
-            const provider = new Web3.providers.WebsocketProvider(
-                'wss://ropsten.infura.io/ws/v3/0d157abe7bd64e07bf8ed60559c80820'
-            );
+            const provider = new Web3.providers.WebsocketProvider(ropstenInfuraProvider);
             const web3Infura = new Web3(provider);
             return new web3Infura.eth.Contract(abi, smAddress);
         }
@@ -43,12 +41,22 @@ export default function Index() {
     }, []);
 
     React.useEffect(() => {
-        contractInfura?.events.emitData({ filter: {}, fromBlock: 'latest' }, (err, event) => {
+        contractInfura?.events.emitNewUser({ filter: {}, fromBlock: 'latest' }, (err, event) => {
             if (err) message.error(err);
             else {
                 console.log('event', event);
                 const { _id, _wallet } = event.returnValues;
                 setTableData((current) => [...current, { _id, _wallet }]);
+            }
+        });
+        contractInfura?.events.emitWinner({ filter: {}, fromBlock: 'latest' }, (err, event) => {
+            if (err) message.error(err);
+            else {
+                console.log('event winner', event);
+                const { _id, _wallet } = event.returnValues;
+                notification.success({
+                    message: `The winner is ${_wallet} with ID: ${_id}`
+                });
             }
         });
     }, [contractInfura]);

@@ -15,7 +15,26 @@ export const abi = [
                 type: 'string'
             }
         ],
-        name: 'emitData',
+        name: 'emitNewUser',
+        type: 'event'
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: false,
+                internalType: 'address',
+                name: '_wallet',
+                type: 'address'
+            },
+            {
+                indexed: false,
+                internalType: 'string',
+                name: '_id',
+                type: 'string'
+            }
+        ],
+        name: 'emitWinner',
         type: 'event'
     },
     {
