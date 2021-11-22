@@ -4,7 +4,7 @@
         "dev": "node server.js",
         "build": "next build",
         "postinstall": "npm run build",
-        "start": "cross-env NODE_ENV=production -p $PORT node server.js",
+        "start": "cross-env NODE_ENV=production node server.js -p $PORT",
         "lint": "next lint"
     },
     "dependencies": {
